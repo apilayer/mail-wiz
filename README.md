@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MailWiz
 
-## Getting Started
+An email verification devtool powered by the [Mailboxlayer](https://mailboxlayer.com/) API.
 
-First, run the development server:
+Paste a single address, a comma-separated list, or drop in a CSV — get back one table with
+syntax validation, MX records, live SMTP check, catch-all detection, role/disposable/free
+flags, and a 0–1 deliverability score. Results export back out as CSV.
+
+Shares its design system with [IPWiz](https://ipwiz.vercel.app).
+
+## Setup
 
 ```bash
+cp .env.example .env.local   # then paste your key
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Get a free access key (100 requests/mo) at [mailboxlayer.com](https://mailboxlayer.com/product).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How it works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/api/verify/route.ts` — POST `{ emails: string[] }`. The key stays server-side and
+  never reaches the browser. Mailboxlayer's `/bulk_check` is a Pro-plan endpoint, so this
+  fans out single `/check` calls through a 5-wide concurrency pool instead.
+- `app/lib/mailbox.ts` — response types, email extraction, de-duplication, and the
+  `verdict()` rollup that turns raw flags into deliverable / risky / undeliverable.
+- `app/components/` — `VerifyPanel` (textarea + CSV drop zone), `ResultsTable`
+  (filters + CSV export), `Header`, `ThemeToggle`.
 
-## Learn More
+## Notes on quotas
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every address costs one API credit, so requests are capped at `MAX_BATCH` (100) per call and
+duplicates are dropped before anything is sent. Adjust both in `app/lib/mailbox.ts`.
