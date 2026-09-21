@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  basePath: '/devtools/verify-email',
+  assetPrefix: '/devtools/verify-email',
+  images: { unoptimized: true },
 };
 
 export default nextConfig;
