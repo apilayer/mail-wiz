@@ -76,6 +76,14 @@ jobs:
           echo "Git Branch: ${GIT_BRANCH}"
           echo "Repo URL: ${REPO_URL}"
 
+      - name: Debug OIDC claims
+        shell: bash
+        run: |
+          echo "Repository: ${GITHUB_REPOSITORY}"
+          echo "Environment: ${{ needs.resolve.outputs.environment }}"
+          echo "Ref: ${GITHUB_REF}"
+          echo "Event: ${GITHUB_EVENT_NAME}"
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
