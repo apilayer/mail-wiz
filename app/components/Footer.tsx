@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { assetPath } from "../lib/assets";
 
 const SUITE = [
   { name: "ipstack", href: "https://ipstack.com" },
@@ -21,7 +22,7 @@ function SuiteStrip() {
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center gap-2.5">
             <Image
-              src="/apilayer-logo.png"
+              src={assetPath("/apilayer-logo.png")}
               alt="APILayer"
               width={600}
               height={116}
@@ -142,7 +143,7 @@ export function Footer() {
                 Powered by
               </span>
               <Image
-                src="/apilayer-logo.png"
+                src={assetPath("/apilayer-logo.png")}
                 alt="APILayer"
                 width={600}
                 height={116}
