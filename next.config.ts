@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath: '/devtools/mail-wiz',
-  assetPrefix: '/devtools/mail-wiz',
+  basePath: '/devtools/verify-email',
+  assetPrefix: '/devtools/verify-email',
   images: { unoptimized: true },
 };
 
