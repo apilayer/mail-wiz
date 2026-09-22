@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { assetPath } from "../lib/assets";
 
 /**
  * Mailboxlayer CTA card, mirroring the ipstack banner on apilayer.com/devtools.
@@ -20,7 +21,7 @@ export function PromoBanner() {
       <div className="relative z-10 flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
         <div className="flex items-center gap-4">
           <Image
-            src="/mailboxlayer-icon.png"
+            src={assetPath("/mailboxlayer-icon.png")}
             alt=""
             width={150}
             height={150}
@@ -31,14 +32,14 @@ export function PromoBanner() {
               {/* Navy wordmark on light, white on dark — the source asset is
                   white-only, so we ship both rather than filtering it. */}
               <Image
-                src="/mailboxlayer-wordmark-dark.png"
+                src={assetPath("/mailboxlayer-wordmark-dark.png")}
                 alt="Mailboxlayer"
                 width={350}
                 height={54}
                 className="block h-4 w-auto dark:hidden"
               />
               <Image
-                src="/mailboxlayer-wordmark-light.png"
+                src={assetPath("/mailboxlayer-wordmark-light.png")}
                 alt=""
                 aria-hidden
                 width={350}
@@ -47,7 +48,7 @@ export function PromoBanner() {
               />
               <span className="h-3.5 w-px bg-black/15 dark:bg-white/25" />
               <Image
-                src="/apilayer-logo.png"
+                src={assetPath("/apilayer-logo.png")}
                 alt="APILayer"
                 width={600}
                 height={116}

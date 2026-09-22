@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { assetPath } from "../lib/assets";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
@@ -11,7 +12,7 @@ export function Header() {
           </span>
           <span className="text-xs text-fg-dim">by</span>
           <Image
-            src="/apilayer-logo.png"
+            src={assetPath("/apilayer-logo.png")}
             alt="APILayer"
             width={600}
             height={116}
