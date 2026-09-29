@@ -5,6 +5,7 @@ import { VerifyPanel } from "./VerifyPanel";
 import { ResultsTable } from "./ResultsTable";
 import { PromoBanner } from "./PromoBanner";
 import type { VerifyResponse } from "@/app/lib/mailbox";
+import { BASE_PATH } from "@/app/lib/basePath";
 
 export function Verifier() {
   const [result, setResult] = useState<VerifyResponse | null>(null);
@@ -15,7 +16,8 @@ export function Verifier() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/verify", {
+      // fetch() does not apply basePath automatically, unlike <Link> and router.
+      const res = await fetch(`${BASE_PATH}/api/verify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ emails }),

@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { assetPath } from "../lib/assets";
+import { ApilayerLogo } from "./ApilayerLogo";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
@@ -11,14 +10,7 @@ export function Header() {
             MailWiz
           </span>
           <span className="text-xs text-fg-dim">by</span>
-          <Image
-            src={assetPath("/apilayer-logo.png")}
-            alt="APILayer"
-            width={600}
-            height={116}
-            priority
-            className="h-5 w-auto dark:brightness-0 dark:invert"
-          />
+          <ApilayerLogo priority className="h-5" />
         </div>
         <div className="flex items-center gap-4 text-xs text-fg-muted">
           <a
