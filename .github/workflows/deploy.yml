@@ -230,7 +230,6 @@ jobs:
 
     env:
       APP_ROOT: ${{ vars.APP_ROOT }}
-      APP_BASE_PATH: ${{ vars.APP_BASE_PATH }}
 
     steps:
       - name: Checkout repository
@@ -250,14 +249,7 @@ jobs:
           timeout: 1200
           script: |
             cd "${APP_ROOT}"
-            case "${APP_BASE_PATH:-}" in
-              /?*) ;;
-              *)
-                echo "ERROR: APP_BASE_PATH must be a sub-path like /my-app (got: '${APP_BASE_PATH:-}')."
-                exit 1
-                ;;
-            esac
-            NEXT_PUBLIC_BASE_PATH="${APP_BASE_PATH}" npm run build
+            npm run build
 
   # JOB 5: RESTART
   restart:

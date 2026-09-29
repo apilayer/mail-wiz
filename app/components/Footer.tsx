@@ -1,4 +1,5 @@
-import { ApilayerLogo } from "./ApilayerLogo";
+import Image from "next/image";
+import { assetPath } from "../lib/assets";
 
 const SUITE = [
   { name: "ipstack", href: "https://ipstack.com" },
@@ -20,7 +21,13 @@ function SuiteStrip() {
       <div className="relative z-10 flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center gap-2.5">
-            <ApilayerLogo className="h-3.5" />
+            <Image
+              src={assetPath("/apilayer-logo.png")}
+              alt="APILayer"
+              width={600}
+              height={116}
+              className="h-3.5 w-auto dark:brightness-0 dark:invert"
+            />
             <span className="h-3.5 w-px bg-black/15 dark:bg-white/25" />
             <span className="mono text-[10px] uppercase tracking-widest text-fg-dim">
               the unified suite
@@ -135,7 +142,13 @@ export function Footer() {
               <span className="mono text-[10px] uppercase tracking-wider">
                 Powered by
               </span>
-              <ApilayerLogo className="h-3.5" />
+              <Image
+                src={assetPath("/apilayer-logo.png")}
+                alt="APILayer"
+                width={600}
+                height={116}
+                className="h-3.5 w-auto dark:brightness-0 dark:invert"
+              />
             </a>
           </div>
 

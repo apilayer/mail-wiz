@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { assetPath } from "../lib/assets";
-import { ApilayerLogo } from "./ApilayerLogo";
 
 /**
  * Mailboxlayer CTA card, mirroring the ipstack banner on apilayer.com/devtools.
@@ -48,7 +47,13 @@ export function PromoBanner() {
                 className="hidden h-4 w-auto dark:block"
               />
               <span className="h-3.5 w-px bg-black/15 dark:bg-white/25" />
-              <ApilayerLogo className="h-3" />
+              <Image
+                src={assetPath("/apilayer-logo.png")}
+                alt="APILayer"
+                width={600}
+                height={116}
+                className="h-3 w-auto dark:brightness-0 dark:invert"
+              />
             </div>
             <p className="mono text-[10px] font-semibold uppercase tracking-widest text-[#18569f] dark:text-[#7FB2E5]">
               Email validation &amp; verification API
