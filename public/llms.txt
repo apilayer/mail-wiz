@@ -1,0 +1,93 @@
+# MailWiz - free email verification
+
+> A free tool that checks whether an email address can actually receive mail:
+> syntax, MX records, a live SMTP check, catch-all, role and disposable
+> detection and a deliverability score. Powered by the Mailboxlayer API from
+> APILayer.
+
+## What it answers
+
+- **Is this email address real?** Four checks run in order, and each result is
+  reported separately rather than collapsed into one pass or fail.
+- **Can the domain receive mail at all?** The MX lookup answers that before
+  anything else is attempted.
+- **Does this specific mailbox exist?** A live SMTP check asks the receiving
+  server directly.
+- **Is the domain a catch-all?** If it accepts every possible mailbox, per
+  address verification is impossible and that is stated plainly.
+- **Is it disposable or a role address?** Both are flagged separately, because
+  both are usually deliverable but rarely what you want on a list.
+- **Can I check a whole list?** Yes. Paste a comma-separated list or upload a
+  CSV.
+
+## The checks, in order
+
+1. **Syntax.** Whether the address is well formed at all.
+2. **MX records.** Whether the domain publishes a mail server. A domain with
+   none cannot receive mail regardless of how the address looks.
+3. **SMTP.** Whether that server accepts this particular mailbox when asked.
+4. **Catch-all.** Whether the server accepts everything, which makes the SMTP
+   result meaningless on its own.
+
+Role and disposable detection run alongside these and are reported as flags,
+not failures.
+
+## Why it matters
+
+Mailbox providers judge a sender on bounce rate. Sending to addresses that do
+not exist is the quickest route to having an entire domain filtered as spam,
+which costs you the mail you actually cared about. Verifying first protects
+deliverability for the rest of the list.
+
+## Limits
+
+- A catch-all domain cannot be verified per address by anyone.
+- Some mail servers deliberately refuse SMTP verification; those are reported
+  as unknown rather than guessed at.
+- A deliverable address is not necessarily a wanted one; see role and
+  disposable flags.
+
+## Data source
+
+Mailboxlayer (https://mailboxlayer.com), an APILayer product. Free tier
+available.
+
+## Frequently asked questions
+
+### How do I check if an email address is real?
+
+Paste it in. The tool runs four checks in order: whether the address is syntactically valid, whether the domain publishes MX records that can accept mail, whether the mail server accepts that specific mailbox when asked over SMTP, and whether the domain accepts everything regardless. Together those tell you whether mail sent to the address has somewhere to land.
+
+### What is an MX record and why does it matter?
+
+An MX record is the DNS entry that says which server receives mail for a domain. If a domain publishes none, nothing can be delivered there at all, no matter how well formed the address looks. It is the cheapest and most decisive check available, which is why it runs before the SMTP step.
+
+### What is a catch-all address?
+
+A catch-all domain accepts mail for every possible mailbox rather than only the ones that exist. That makes per-address verification impossible: the server says yes to anything, so a positive result proves nothing. The tool flags catch-all domains explicitly instead of reporting a false pass.
+
+### What is a disposable email address?
+
+A temporary inbox from a service built to expire, used to get past a sign-up form without handing over a real address. They are valid and deliverable right now and useless to you a week later, so they are flagged separately rather than counted as failures.
+
+### What is a role address?
+
+An address that belongs to a function rather than a person: info@, support@, sales@, admin@. They are usually real and deliverable, but they tend to reach shared inboxes, attract higher complaint rates and hurt sender reputation, so most senders exclude them from marketing lists.
+
+### Why verify a list before sending to it?
+
+Mailbox providers judge you on bounce rate. Sending to addresses that do not exist is the fastest way to have your domain filtered into spam for everyone else on the list. Cleaning the list first protects the deliverability of the mail you actually care about.
+
+### Can I check a whole list at once?
+
+Yes. Paste a comma-separated list or upload a CSV and every address is checked and returned in one table, with the result of each individual check shown rather than a single pass or fail.
+
+### What is Mailboxlayer?
+
+Mailboxlayer is an email verification API from APILayer. It performs syntax, MX, SMTP, catch-all, role and disposable checks and returns a deliverability score as structured JSON. It is the API behind this page, and it has a free tier.
+
+## Links
+
+- Tool: https://apilayer.com/devtools/email-verifier
+- Mailboxlayer API: https://mailboxlayer.com
+- APILayer: https://apilayer.com

@@ -1,32 +1,11 @@
 @import "tailwindcss";
 
-/* Bind `dark:` to the in-app toggle. Without this, Tailwind v4 resolves `dark:`
-   against prefers-color-scheme, so logo inversions follow the OS instead of
-   data-theme and break whenever the two disagree. */
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-:root,
-[data-theme="dark"] {
-  --bg: #0a0a0b;
-  --bg-elev: #111113;
-  --bg-elev-2: #17171a;
-  --border: #27272a;
-  --border-strong: #3f3f46;
-  --fg: #ededed;
-  --fg-muted: #a1a1aa;
-  --fg-dim: #71717a;
-  --accent: #3b82f6;
-  --accent-dim: #1d4ed8;
-  --danger: #f43f5e;
-  --warn: #f59e0b;
-  --info: #38bdf8;
-  --ok: #22c55e;
-  --glow-a: rgba(59, 130, 246, 0.08);
-  --glow-b: rgba(29, 78, 216, 0.06);
-  --grid-line: rgba(255, 255, 255, 0.03);
-}
-
-[data-theme="light"] {
+/* Shared APILayer devtool system with Mailboxlayer's own red as the accent,
+   since Mailboxlayer is the API this tool runs on. #c93f35 is their #cc463c
+   nudged two points darker so it clears WCAG AA for body text on #fafafa;
+   #cc463c itself is kept for solid fills carrying white text. */
+:root {
   --bg: #fafafa;
   --bg-elev: #ffffff;
   --bg-elev-2: #f4f4f5;
@@ -35,14 +14,14 @@
   --fg: #18181b;
   --fg-muted: #52525b;
   --fg-dim: #71717a;
-  --accent: #2563eb;
-  --accent-dim: #1d4ed8;
-  --danger: #e11d48;
-  --warn: #d97706;
-  --info: #0284c7;
-  --ok: #16a34a;
-  --glow-a: rgba(37, 99, 235, 0.06);
-  --glow-b: rgba(29, 78, 216, 0.04);
+  --accent: #c93f35;
+  --accent-dim: #a8362e;
+  --ok: #17865c;
+  --danger: #d92d4b;
+  --warn: #b26a00;
+  --info: #2056d4;
+  --glow-a: rgba(204, 70, 60, 0.05);
+  --glow-b: rgba(104, 129, 169, 0.04);
   --grid-line: rgba(0, 0, 0, 0.04);
 }
 
@@ -61,8 +40,8 @@
   --color-warn: var(--warn);
   --color-info: var(--info);
   --color-ok: var(--ok);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-open-sans);
+  --font-mono: var(--font-source-code);
 }
 
 html,
@@ -72,15 +51,20 @@ body {
 }
 
 body {
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
   background-image:
     radial-gradient(circle at 0% 0%, var(--glow-a), transparent 55%),
     radial-gradient(circle at 100% 0%, var(--glow-b), transparent 45%);
   background-attachment: fixed;
 }
 
-.mono {
-  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
+.label {
+  letter-spacing: 0.055em;
+  font-feature-settings: "tnum" 1;
+}
+
+.code {
+  font-family: var(--font-source-code), ui-monospace, SFMono-Regular, Menlo,
     monospace;
 }
 
@@ -103,18 +87,6 @@ body {
   background: transparent;
 }
 
-@keyframes pulse-dot {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.35;
-  }
-}
-.pulse-dot {
-  animation: pulse-dot 1.6s ease-in-out infinite;
-}
 
 @keyframes flash-row {
   0% {
@@ -138,4 +110,9 @@ details summary::-webkit-details-marker {
 details[open] > summary {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+/* Keep collapsed FAQ answers in the DOM for crawlers but out of sight. */
+[hidden] {
+  display: none !important;
 }

@@ -15,8 +15,8 @@ const SUITE = [
  *  doesn't compete with the Mailboxlayer banner above it. */
 function SuiteStrip() {
   return (
-    <section className="relative overflow-hidden rounded-lg border border-[#0052cc]/25 bg-bg-elev dark:border-[#0052cc]/30">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#eef3fd] via-white/50 to-[#0052cc]/10 dark:from-[#050d1c]/90 dark:via-[#0a0a0b]/85 dark:to-[#0052cc]/20" />
+    <section className="relative overflow-hidden rounded-lg border border-[#cc463c]/25 bg-bg-elev">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#fdf0ef] via-white/50 to-[#cc463c]/10" />
       <div className="relative z-10 flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center gap-2.5">
@@ -25,10 +25,10 @@ function SuiteStrip() {
               alt="APILayer"
               width={600}
               height={116}
-              className="h-3.5 w-auto dark:brightness-0 dark:invert"
+              className="h-3.5 w-auto"
             />
-            <span className="h-3.5 w-px bg-black/15 dark:bg-white/25" />
-            <span className="mono text-[10px] uppercase tracking-widest text-fg-dim">
+            <span className="h-3.5 w-px bg-black/15" />
+            <span className="label text-[10px] uppercase tracking-widest text-fg-dim">
               the unified suite
             </span>
           </div>
@@ -43,7 +43,7 @@ function SuiteStrip() {
                 href={api.href}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="mono rounded border border-border bg-bg-elev-2 px-2 py-0.5 text-[10px] text-fg-muted transition hover:border-[#0052cc]/50 hover:text-[#0052cc] dark:hover:border-[#5C9DFF]/50 dark:hover:text-[#5C9DFF]"
+                className="label rounded border border-border bg-bg-elev-2 px-2 py-0.5 text-[10px] text-fg-muted transition hover:border-[#cc463c]/50 hover:text-[#cc463c]"
               >
                 {api.name}
               </a>
@@ -54,7 +54,7 @@ function SuiteStrip() {
           href="https://apilayer.com/"
           target="_blank"
           rel="noreferrer noopener"
-          className="mono group inline-flex w-fit shrink-0 items-center gap-1.5 rounded-md bg-[#0052cc] px-4 py-2 text-xs font-bold text-white shadow-lg shadow-[#0052cc]/20 transition hover:bg-[#0a63e6]"
+          className="label group inline-flex w-fit shrink-0 items-center gap-1.5 rounded-md bg-accent px-4 py-2 text-xs font-bold text-white transition hover:bg-accent-dim"
         >
           Browse all APIs
           <span className="transition-transform group-hover:translate-x-0.5">
@@ -75,7 +75,7 @@ function LinkColumn({
 }) {
   return (
     <div className="flex flex-col gap-3">
-      <h3 className="mono text-[10px] uppercase tracking-wider text-fg-dim">
+      <h3 className="label text-[10px] uppercase tracking-wider text-fg-dim">
         {title}
       </h3>
       <ul className="flex flex-col gap-2">
@@ -123,7 +123,7 @@ export function Footer() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="mono text-sm font-semibold tracking-tight">
+              <span className="label text-sm font-semibold tracking-tight">
                 MailWiz
               </span>
             </span>
@@ -138,7 +138,7 @@ export function Footer() {
               rel="noreferrer noopener"
               className="mt-1 inline-flex w-fit items-center gap-2 text-fg-dim transition hover:opacity-80"
             >
-              <span className="mono text-[10px] uppercase tracking-wider">
+              <span className="label text-[10px] uppercase tracking-wider">
                 Powered by
               </span>
               <Image
@@ -146,7 +146,7 @@ export function Footer() {
                 alt="APILayer"
                 width={600}
                 height={116}
-                className="h-3.5 w-auto dark:brightness-0 dark:invert"
+                className="h-3.5 w-auto"
               />
             </a>
           </div>
@@ -177,7 +177,7 @@ export function Footer() {
           />
         </div>
 
-        <div className="mono mt-8 flex flex-wrap items-center justify-between gap-2 border-t border-border pt-5 text-[11px] text-fg-dim">
+        <div className="label mt-8 flex flex-wrap items-center justify-between gap-2 border-t border-border pt-5 text-[11px] text-fg-dim">
           <span>MailWiz © Mailboxlayer by APILayer</span>
           <a
             href="https://mailboxlayer.com/"

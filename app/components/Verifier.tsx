@@ -39,13 +39,14 @@ export function Verifier() {
     <main className="grid-bg flex-1">
       <div className="mx-auto flex max-w-6xl flex-col gap-5 px-6 py-10">
         <div className="flex flex-col gap-2">
-          <h1 className="text-2xl font-semibold tracking-tight text-fg sm:text-3xl">
-            Separate real inboxes from the rest.
+          <h1 className="text-[2rem] font-semibold leading-[1.24] text-fg md:text-[2.8125rem] md:leading-[3.5rem]">
+            Is this email address real?
           </h1>
-          <p className="max-w-2xl text-sm text-fg-muted">
-            Syntax, MX records, live SMTP ping, catch-all detection, role and
-            disposable filtering, plus a deliverability score — for one address
-            or a whole CSV. Powered by the Mailboxlayer API.
+          <p className="max-w-2xl text-base leading-relaxed text-fg-muted md:text-[1.1875rem] md:leading-[1.7]">
+            Check whether an address can actually receive mail. Syntax, MX
+            records, a live SMTP check, catch-all, role and disposable
+            detection and a deliverability score, for one address or a whole
+            CSV. Powered by the Mailboxlayer API.
           </p>
         </div>
 
@@ -54,13 +55,13 @@ export function Verifier() {
         <PromoBanner />
 
         {error && (
-          <div className="mono rounded-xl border border-danger/40 bg-danger/10 px-5 py-3 text-sm text-danger">
+          <div className="label rounded-xl border border-danger/40 bg-danger/10 px-5 py-3 text-sm text-danger">
             {error}
           </div>
         )}
 
         {loading && !result && (
-          <div className="mono rounded-xl border border-border bg-bg-elev px-5 py-8 text-center text-sm text-fg-dim">
+          <div className="label rounded-xl border border-border bg-bg-elev px-5 py-8 text-center text-sm text-fg-dim">
             pinging mail servers…
           </div>
         )}

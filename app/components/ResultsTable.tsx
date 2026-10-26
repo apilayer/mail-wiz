@@ -95,10 +95,10 @@ export function ResultsTable({ result }: { result: VerifyResponse }) {
     <section className="rounded-xl border border-border bg-bg-elev">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-3">
         <div className="flex items-center gap-2">
-          <span className="mono text-[10px] uppercase tracking-wider text-fg-dim">
+          <span className="label text-[10px] uppercase tracking-wider text-fg-dim">
             results
           </span>
-          <span className="mono text-xs text-fg-muted">
+          <span className="label text-xs text-fg-muted">
             {result.rows.length} checked in {result.elapsedMs}ms
             {result.duplicates > 0 && ` · ${result.duplicates} duplicate skipped`}
             {result.truncated > 0 && ` · ${result.truncated} over limit`}
@@ -107,7 +107,7 @@ export function ResultsTable({ result }: { result: VerifyResponse }) {
         <button
           type="button"
           onClick={exportCsv}
-          className="mono rounded-md border border-border bg-bg-elev-2 px-3 py-1.5 text-[11px] text-fg-muted transition hover:text-fg"
+          className="label rounded-md border border-border bg-bg-elev-2 px-3 py-1.5 text-[11px] text-fg-muted transition hover:text-fg"
         >
           export csv ↓
         </button>
@@ -121,7 +121,7 @@ export function ResultsTable({ result }: { result: VerifyResponse }) {
               key={f}
               type="button"
               onClick={() => setFilter(f)}
-              className={`mono rounded border px-2 py-1 text-[11px] transition ${
+              className={`label rounded border px-2 py-1 text-[11px] transition ${
                 filter === f
                   ? "border-accent/50 bg-accent/10 text-accent"
                   : "border-border bg-bg-elev-2 text-fg-muted hover:text-fg"
@@ -174,11 +174,11 @@ function Row({ row }: { row: VerifyRow }) {
   if (!row.ok) {
     return (
       <tr className="border-b border-border last:border-0">
-        <td className="mono px-4 py-2.5 text-fg">{row.email}</td>
+        <td className="label px-4 py-2.5 text-fg">{row.email}</td>
         <td className="px-4 py-2.5">
           <Badge verdict={v} />
         </td>
-        <td className="mono px-4 py-2.5 text-xs text-fg-dim" colSpan={8}>
+        <td className="label px-4 py-2.5 text-xs text-fg-dim" colSpan={8}>
           {row.error}
         </td>
       </tr>
@@ -188,7 +188,7 @@ function Row({ row }: { row: VerifyRow }) {
   const d = row.data;
   return (
     <tr className="border-b border-border last:border-0 hover:bg-bg-elev-2">
-      <td className="mono px-4 py-2.5 text-fg">
+      <td className="label px-4 py-2.5 text-fg">
         {d.email}
         {d.did_you_mean && (
           <span className="ml-2 text-xs text-warn" title="Did you mean?">
@@ -216,7 +216,7 @@ function Row({ row }: { row: VerifyRow }) {
 function Badge({ verdict }: { verdict: Filter }) {
   return (
     <span
-      className={`mono rounded border px-2 py-0.5 text-[10px] uppercase tracking-wider ${
+      className={`label rounded border px-2 py-0.5 text-[10px] uppercase tracking-wider ${
         VERDICT_STYLE[verdict as keyof typeof VERDICT_STYLE] ?? VERDICT_STYLE.failed
       }`}
     >
@@ -237,7 +237,7 @@ function Score({ value }: { value: number }) {
           style={{ width: `${Math.round(value * 100)}%` }}
         />
       </div>
-      <span className="mono text-xs text-fg-muted">{value.toFixed(2)}</span>
+      <span className="label text-xs text-fg-muted">{value.toFixed(2)}</span>
     </div>
   );
 }
@@ -256,11 +256,11 @@ function Flag({
   neutral?: boolean;
 }) {
   if (value === null || value === undefined) {
-    return <td className="mono px-4 py-2.5 text-fg-dim">—</td>;
+    return <td className="label px-4 py-2.5 text-fg-dim">—</td>;
   }
   const good = invert ? !value : value;
   const color = neutral ? "text-fg-muted" : good ? "text-ok" : "text-danger";
   return (
-    <td className={`mono px-4 py-2.5 ${color}`}>{value ? "yes" : "no"}</td>
+    <td className={`label px-4 py-2.5 ${color}`}>{value ? "yes" : "no"}</td>
   );
 }

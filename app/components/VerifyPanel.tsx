@@ -39,10 +39,10 @@ export function VerifyPanel({
   return (
     <section className="rounded-xl border border-border bg-bg-elev">
       <div className="flex items-center gap-2 border-b border-border px-5 py-3">
-        <span className="mono text-[10px] uppercase tracking-wider text-fg-dim">
+        <span className="label text-[10px] uppercase tracking-wider text-fg-dim">
           verify
         </span>
-        <span className="mono text-xs text-fg-muted">
+        <span className="label text-xs text-fg-muted">
           one email, a comma-separated list, or a CSV
         </span>
       </div>
@@ -74,13 +74,13 @@ export function VerifyPanel({
             dragging ? "border-accent bg-accent/5" : "border-border bg-bg-elev-2"
           }`}
         >
-          <span className="mono truncate text-xs text-fg-muted">
+          <span className="label truncate text-xs text-fg-muted">
             {fileName ?? "drop a .csv or .txt here"}
           </span>
           <button
             type="button"
             onClick={() => fileInput.current?.click()}
-            className="mono shrink-0 rounded border border-border bg-bg-elev px-2 py-1 text-[11px] text-fg-muted transition hover:text-fg"
+            className="label shrink-0 rounded border border-border bg-bg-elev px-2 py-1 text-[11px] text-fg-muted transition hover:text-fg"
           >
             browse
           </button>
@@ -98,7 +98,7 @@ export function VerifyPanel({
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <span className="mono text-[10px] uppercase tracking-wider text-fg-dim">
+          <span className="label text-[10px] uppercase tracking-wider text-fg-dim">
             samples
           </span>
           {SAMPLES.map((s) => (
@@ -109,7 +109,7 @@ export function VerifyPanel({
               onClick={() =>
                 setValue((v) => (v.trim() ? `${v.trim()}, ${s.email}` : s.email))
               }
-              className="mono rounded border border-border bg-bg-elev-2 px-2 py-1 text-[11px] text-fg-muted transition hover:text-fg disabled:opacity-50"
+              className="label rounded border border-border bg-bg-elev-2 px-2 py-1 text-[11px] text-fg-muted transition hover:text-fg disabled:opacity-50"
             >
               {s.label} · {s.email}
             </button>
@@ -117,7 +117,7 @@ export function VerifyPanel({
         </div>
 
         <div className="flex items-center justify-between gap-3 border-t border-border pt-3">
-          <span className="mono text-[11px] text-fg-dim">
+          <span className="label text-[11px] text-fg-dim">
             {parsed.length === 0
               ? "no addresses detected"
               : `${parsed.length} address${parsed.length === 1 ? "" : "es"} detected`}
@@ -131,14 +131,14 @@ export function VerifyPanel({
                 setValue("");
                 setFileName(null);
               }}
-              className="mono h-10 rounded-md border border-border bg-bg-elev-2 px-3 text-sm text-fg-muted transition hover:text-fg disabled:opacity-50"
+              className="label h-10 rounded-md border border-border bg-bg-elev-2 px-3 text-sm text-fg-muted transition hover:text-fg disabled:opacity-50"
             >
               clear
             </button>
             <button
               type="submit"
               disabled={loading || parsed.length === 0}
-              className="mono h-10 rounded-md border border-accent/40 bg-accent/15 px-4 text-sm font-medium text-accent transition hover:bg-accent/25 disabled:opacity-50"
+              className="label h-10 rounded-md border border-accent/40 bg-accent/15 px-4 text-sm font-medium text-accent transition hover:bg-accent/25 disabled:opacity-50"
             >
               {loading ? "verifying…" : "verify"}
             </button>
