@@ -88,6 +88,6 @@ Mailboxlayer is an email verification API from APILayer. It performs syntax, MX,
 
 ## Links
 
-- Tool: https://apilayer.com/devtools/email-verifier
+- Tool: https://apilayer.com/devtools/verify-email
 - Mailboxlayer API: https://mailboxlayer.com
 - APILayer: https://apilayer.com

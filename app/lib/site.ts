@@ -4,7 +4,7 @@
  * crawler should be told about it.
  */
 const DEFAULT_ORIGIN = "https://apilayer.com";
-const DEFAULT_PATH = "/devtools/email-verifier";
+const DEFAULT_PATH = "/devtools/verify-email";
 
 export const SITE = {
   name: "MailWiz",
